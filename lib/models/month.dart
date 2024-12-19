@@ -18,19 +18,20 @@ class Month {
           Expense(
             title: 'Mercado',
             amount: 55.60,
-            category: Categories.alimentacao,
+            category:
+                kCategories.firstWhere((item) => item['name'] == 'Alimentação'),
             date: DateTime.now(),
           ),
           Expense(
             title: 'Café - Unifei',
             amount: 1.50,
-            category: Categories.cafe,
+            category: kCategories.firstWhere((item) => item['name'] == 'Café'),
             date: DateTime.now(),
           ),
           Expense(
             title: 'Aluguel',
             amount: 600,
-            category: Categories.fixo,
+            category: kCategories.firstWhere((item) => item['name'] == 'Fixo'),
             date: DateTime.now(),
           ),
         ];

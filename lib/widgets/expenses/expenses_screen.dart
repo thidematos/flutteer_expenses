@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_expenses/models/month.dart';
+import 'package:flutter_expenses/widgets/expenses/expenses_list.dart';
 
 class ExpensesScreen extends StatefulWidget {
   const ExpensesScreen(this.currentMonth, {super.key});
@@ -33,7 +34,7 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
               ),
             )
           ]
-        : [];
+        : [ExpensesList(widget.currentMonth)];
 
     return Padding(
       padding: const EdgeInsets.all(16),
