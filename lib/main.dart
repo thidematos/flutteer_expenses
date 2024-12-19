@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_expenses/expenses.dart';
+import 'package:flutter_expenses/tracker.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 final ColorScheme kColorTheme =
@@ -26,7 +26,7 @@ void main() {
           color: kColorTheme.onPrimaryContainer,
         ),
       ),
-      home: Expenses(),
+      home: const Tracker(),
     ),
   );
 }

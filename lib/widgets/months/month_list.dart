@@ -1,40 +1,51 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_expenses/tracker.dart';
 import 'package:flutter_expenses/models/month.dart';
+import 'package:flutter_expenses/models/saving.dart';
+import 'package:flutter_expenses/utils/format_monetary.dart';
 import 'package:flutter_expenses/widgets/months/month_item.dart';
 
 class MonthList extends StatelessWidget {
-  final List<Month> months = [
-    Month(month: 'Janeiro', startValue: 500),
-    Month(month: 'Fevereiro', startValue: 500),
-    Month(month: 'Março', startValue: 500),
-    Month(month: 'Abril', startValue: 500),
-    Month(month: 'Maio', startValue: 500),
-    Month(month: 'Junho', startValue: 500),
-    Month(month: 'Julho', startValue: 500),
-    Month(month: 'Agosto', startValue: 500),
-    Month(month: 'Setembro', startValue: 500),
-    Month(month: 'Outubro', startValue: 500),
-    Month(month: 'Novembro', startValue: 500),
-    Month(month: 'Dezembro', startValue: 500),
-  ];
+  MonthList(this.onSelectMonth, {super.key});
+
+  void Function(Month month) onSelectMonth;
 
   @override
   Widget build(BuildContext context) {
+    final double sumSavings = Saving().sumSavings(kMonths);
+
     return Column(
       children: [
-        Text(
-          'Meses',
-          style: const TextStyle().copyWith(
-            color: Colors.black,
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 42),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Meses'.toUpperCase(),
+                style: const TextStyle().copyWith(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
+              ),
+              Row(
+                children: [
+                  const Icon(Icons.monetization_on),
+                  const SizedBox(width: 10),
+                  Text(formatValue(sumSavings)),
+                ],
+              ),
+            ],
           ),
         ),
         SizedBox(
           height: 400,
           child: ListView.builder(
             itemBuilder: (ctx, index) {
-              return MonthItem(months[index]);
+              return MonthItem(onSelectMonth, kMonths[index]);
             },
-            itemCount: months.length,
+            itemCount: kMonths.length,
           ),
         ),
       ],

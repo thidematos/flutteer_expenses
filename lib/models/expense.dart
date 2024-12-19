@@ -1,4 +1,4 @@
-enum Categories { alimentacao, transporte, cafe, diversos, trabalho }
+enum Categories { alimentacao, transporte, cafe, diversos, trabalho, fixo }
 
 class Expense {
   Expense({

@@ -1,3 +1,3 @@
 String formatValue(double value) {
-  return 'R\$ ${value.toStringAsFixed(2)}';
+  return 'R\$${value.toStringAsFixed(2)}';
 }

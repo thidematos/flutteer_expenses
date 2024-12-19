@@ -4,31 +4,42 @@ import 'package:flutter_expenses/models/month.dart';
 import 'package:flutter_expenses/utils/format_monetary.dart';
 
 class MonthItem extends StatelessWidget {
-  MonthItem(this.currentMonth, {super.key});
+  const MonthItem(this.onSelectMonth, this.currentMonth, {super.key});
 
   final Month currentMonth;
 
+  final Function(Month month) onSelectMonth;
+
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 12),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Text(
-              currentMonth.month,
-              style: const TextStyle().copyWith(color: kColorTheme.onTertiary),
+    return TextButton(
+        onPressed: () {
+          onSelectMonth(currentMonth);
+        },
+        child: Card(
+          color: currentMonth.color,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 36),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text(
+                  currentMonth.month.toUpperCase(),
+                  textAlign: TextAlign.start,
+                  style: const TextStyle().copyWith(
+                    color: kColorTheme.onTertiary,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const Spacer(),
+                Text(
+                  'Saldo: ${formatValue(currentMonth.finalValue)}',
+                  style: const TextStyle()
+                      .copyWith(color: kColorTheme.onTertiary, fontSize: 12),
+                )
+              ],
             ),
-            Text(
-              'Saldo: ${formatValue(currentMonth.finalValue)}',
-              style: const TextStyle()
-                  .copyWith(color: kColorTheme.onTertiary, fontSize: 12),
-            )
-          ],
-        ),
-      ),
-    );
+          ),
+        ));
   }
 }

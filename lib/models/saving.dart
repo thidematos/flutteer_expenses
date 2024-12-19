@@ -1,5 +1,15 @@
-class Saving {
-  Saving(this.totalSaving);
+import 'package:flutter_expenses/models/month.dart';
 
-  final double totalSaving;
+class Saving {
+  Saving();
+
+  double sumSavings(List<Month> months) {
+    double sum = 0;
+
+    for (final month in months) {
+      sum += month.finalValue;
+    }
+
+    return sum;
+  }
 }
