@@ -25,6 +25,9 @@ void main() {
         cardTheme: const CardTheme().copyWith(
           color: kColorTheme.onPrimaryContainer,
         ),
+        iconTheme: const IconThemeData().copyWith(
+          color: const Color.fromARGB(255, 175, 175, 175),
+        ),
       ),
       home: const Tracker(),
     ),

@@ -1,7 +1,8 @@
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_expenses/models/expense.dart';
 import 'package:flutter_expenses/models/month.dart';
 import 'package:flutter_expenses/widgets/expenses/expenses_chart.dart';
+import 'package:flutter_expenses/widgets/expenses/expenses_item.dart';
 
 class ExpensesList extends StatefulWidget {
   const ExpensesList(this.currentMonth, {super.key});
@@ -23,13 +24,11 @@ class _ExpensesList extends State<ExpensesList> {
         children: [
           ExpensesChart(widget.currentMonth.expenses),
           SizedBox(
-            height: 200,
+            height: 300,
             child: ListView.builder(
               itemCount: widget.currentMonth.expenses.length,
               itemBuilder: (ctx, index) {
-                return Card(
-                  child: Text(widget.currentMonth.expenses[index].title),
-                );
+                return ExpensesItem(widget.currentMonth.expenses[index]);
               },
             ),
           ),

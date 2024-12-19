@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_expenses/models/expense.dart';
 import 'package:flutter_expenses/models/month.dart';
+import 'package:flutter_expenses/widgets/expenses/create_expense.dart';
 import 'package:flutter_expenses/widgets/expenses/expenses_screen.dart';
 import 'package:flutter_expenses/widgets/months/month_chart.dart';
 import 'package:flutter_expenses/widgets/months/month_list.dart';
@@ -41,6 +43,24 @@ class _TrackerState extends State<Tracker> {
     });
   }
 
+  void showModalExpense() {
+    showModalBottomSheet(
+      isScrollControlled: true,
+      context: context,
+      builder: (ctx) {
+        return CreateExpense(currentMonth!, newExpense);
+      },
+    );
+  }
+
+  void newExpense(Expense expense) {
+    setState(() {
+      currentMonth!.expenses.add(expense);
+      currentMonth!.finalValue =
+          currentMonth!.startValue - currentMonth!.expensesSum;
+    });
+  }
+
   @override
   Widget build(context) {
     List<Widget> actionsButtons = [];
@@ -60,7 +80,9 @@ class _TrackerState extends State<Tracker> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              showModalExpense();
+            },
             icon: const Icon(Icons.add),
           ),
         ),

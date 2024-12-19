@@ -6,9 +6,9 @@ import 'package:flutter_expenses/utils/format_monetary.dart';
 import 'package:flutter_expenses/widgets/months/month_item.dart';
 
 class MonthList extends StatelessWidget {
-  MonthList(this.onSelectMonth, {super.key});
+  const MonthList(this.onSelectMonth, {super.key});
 
-  void Function(Month month) onSelectMonth;
+  final void Function(Month month) onSelectMonth;
 
   @override
   Widget build(BuildContext context) {
