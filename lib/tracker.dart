@@ -7,8 +7,7 @@ import 'package:flutter_expenses/widgets/months/month_chart.dart';
 import 'package:flutter_expenses/widgets/months/month_list.dart';
 
 final List<Month> kMonths = [
-  Month.createDummyExpenses(
-      month: 'Janeiro', startValue: 1200, color: Colors.blue),
+  Month(month: 'Janeiro', startValue: 1200, color: Colors.blue),
   Month(month: 'Fevereiro', startValue: 1200, color: Colors.green),
   Month(month: 'Março', startValue: 1200, color: Colors.orange),
   Month(month: 'Abril', startValue: 1200, color: Colors.purple),

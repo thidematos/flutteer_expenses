@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_expenses/utils/format_date.dart';
-import 'package:intl/intl.dart';
 
 List<Map<String, Object>> kCategories = [
   {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_expenses/models/expense.dart';
+
 import 'package:flutter_expenses/models/month.dart';
 import 'package:flutter_expenses/widgets/expenses/expenses_chart.dart';
 import 'package:flutter_expenses/widgets/expenses/expenses_item.dart';
@@ -16,6 +16,14 @@ class ExpensesList extends StatefulWidget {
 }
 
 class _ExpensesList extends State<ExpensesList> {
+  void removeExpense(String key) {
+    setState(() {
+      widget.currentMonth.expenses.removeWhere((item) => item.title == key);
+      widget.currentMonth.finalValue =
+          widget.currentMonth.startValue - widget.currentMonth.expensesSum;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -28,7 +36,8 @@ class _ExpensesList extends State<ExpensesList> {
             child: ListView.builder(
               itemCount: widget.currentMonth.expenses.length,
               itemBuilder: (ctx, index) {
-                return ExpensesItem(widget.currentMonth.expenses[index]);
+                return ExpensesItem(
+                    widget.currentMonth.expenses[index], removeExpense);
               },
             ),
           ),
